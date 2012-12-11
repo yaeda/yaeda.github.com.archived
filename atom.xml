@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://yaeda.github.com/atom.xml" rel="self"/>
-  <link href="http://yaeda.github.com/"/>
-  <updated>2012-12-10T13:21:54+09:00</updated>
-  <id>http://yaeda.github.com/</id>
+  <title><![CDATA[TECH.KAZEOR.NET]]></title>
+  <link href="http://tech.kazeor.net/atom.xml" rel="self"/>
+  <link href="http://tech.kazeor.net/"/>
+  <updated>2012-12-11T11:25:55+09:00</updated>
+  <id>http://tech.kazeor.net/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Takeshi YAEDA]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hello Octopress!]]></title>
+    <link href="http://tech.kazeor.net/blog/2012/12/11/hello-octopress/"/>
+    <updated>2012-12-11T09:44:00+09:00</updated>
+    <id>http://tech.kazeor.net/blog/2012/12/11/hello-octopress</id>
+    <content type="html"><![CDATA[<p>引越し以来止めているブログですが，そろそろ復帰しようと思っています．
+電源やバックアップなど様々なコストを考えて，サーバを外に出そうと思っていて，候補の一つとしてOctopressを試し中．</p>
+
+<p>素のJekyllにしようかOctopressにしようかとても悩んだけれど，この間なら気軽にswitchできそうだなと思ってとりあえずOctopressで開始．</p>
+
+<p>markdownで書けるのとてもいいですね．タイトルに!マーク(exclamation mark)を入れるときはエスケープが必要でした．</p>
+]]></content>
+  </entry>
   
 </feed>
