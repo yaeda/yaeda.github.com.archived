@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: github | TECH.KAZEOR.NET]]></title>
+  <link href="http://tech.kazeor.net/blog/categories/github/atom.xml" rel="self"/>
+  <link href="http://tech.kazeor.net/"/>
+  <updated>2012-12-12T01:07:16+09:00</updated>
+  <id>http://tech.kazeor.net/</id>
+  <author>
+    <name><![CDATA[Takeshi YAEDA]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Custom Domain with Github Pages]]></title>
+    <link href="http://tech.kazeor.net/blog/2012/12/12/custom-domain-with-github-pages/"/>
+    <updated>2012-12-12T00:43:00+09:00</updated>
+    <id>http://tech.kazeor.net/blog/2012/12/12/custom-domain-with-github-pages</id>
+    <content type="html"><![CDATA[<p><code>yaeda.github.com</code>のままではあれなので，持っているドメインを設定してみた．
+ここには技術的な話を書いていこうと思うので，<code>tech.kazeor.net</code>に設定．</p>
+
+<p>Octopress側は<a href="http://octopress.org/docs/deploying/github/#custom_domains">Document</a>通りにCNAMEファイルを作り，<code>git push</code>．</p>
+
+<p><code>
+echo 'tech.kazeor.net' &gt;&gt; source/CNAME
+</code></p>
+
+<p>VALU-DOMAIN側は以下のようにしてcnameを設定．最後のコンマを忘れずに．
+<code>
+cname tech pages.github.com.
+</code></p>
+
+<p>この調子で今日からOctopressで一人Advent Calendarでもやるかな．</p>
+]]></content>
+  </entry>
+  
+</feed>
