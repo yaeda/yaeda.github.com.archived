@@ -3,7 +3,7 @@ layout: post
 title: "Hello Octopress!"
 date: 2012-12-11 09:44
 comments: true
-categories: other
+categories: octopress
 ---
 
 引越し以来止めているブログですが，そろそろ復帰しようと思っています．
