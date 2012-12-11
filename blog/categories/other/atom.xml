@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[TECH.KAZEOR.NET]]></title>
-  <link href="http://tech.kazeor.net/atom.xml" rel="self"/>
+  <title><![CDATA[Category: other | TECH.KAZEOR.NET]]></title>
+  <link href="http://tech.kazeor.net/blog/categories/other/atom.xml" rel="self"/>
   <link href="http://tech.kazeor.net/"/>
   <updated>2012-12-11T20:31:05+09:00</updated>
   <id>http://tech.kazeor.net/</id>
@@ -25,9 +25,9 @@
 
 <p>markdownで書けるのとてもいいですね．タイトルに!マーク(exclamation mark)を入れるときは以下の様な感じでエスケープが必要でした．</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake new_post\["Hello Octopress\!"\]</span></code></pre></td></tr></table></div></figure>
-
+<p><code>
+rake new_post\["Hello Octopress\!"\]
+</code></p>
 ]]></content>
   </entry>
   
