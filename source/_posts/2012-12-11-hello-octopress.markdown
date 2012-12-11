@@ -3,7 +3,7 @@ layout: post
 title: "Hello Octopress!"
 date: 2012-12-11 09:44
 comments: true
-categories:
+categories: other
 ---
 
 引越し以来止めているブログですが，そろそろ復帰しようと思っています．
@@ -11,4 +11,8 @@ categories:
 
 素のJekyllにしようかOctopressにしようかとても悩んだけれど，この間なら気軽にswitchできそうだなと思ってとりあえずOctopressで開始．
 
-markdownで書けるのとてもいいですね．タイトルに!マーク(exclamation mark)を入れるときはエスケープが必要でした．
+markdownで書けるのとてもいいですね．タイトルに!マーク(exclamation mark)を入れるときは以下の様な感じでエスケープが必要でした．
+
+```
+rake new_post\["Hello Octopress\!"\]
+```
