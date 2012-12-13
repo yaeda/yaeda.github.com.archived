@@ -9,9 +9,7 @@
   <meta name="author" content="Takeshi YAEDA">
 
   
-  <meta name="description" content="yaeda.github.comのままではあれなので，持っているドメインを設定してみた．
-ここには技術的な話を書いていこうと思うので，tech.kazeor.netに設定． Octopress側はDocument通りにCNAMEファイルを作り，git push． 1
-echo 'tech. &hellip;">
+  <meta name="description" content="タイトルが長く，iPhoneのブラウザで表示するとはみ出してしまうのが気になったので，レイアウトを修正してみた． OctopressのレイアウトはSassで書かれている．sass/custom/_style.scssが最後にimportされるので，ここに書けばスタイルを上書きすることができる． &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +74,64 @@ echo 'tech. &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/13/customize-octopress-layout/">Customize Octopress Layout</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-13T00:14:00+09:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>タイトルが長く，iPhoneのブラウザで表示するとはみ出してしまうのが気になったので，レイアウトを修正してみた．</p>
+
+<p>OctopressのレイアウトはSassで書かれている．<code>sass/custom/_style.scss</code>が最後にimportされるので，ここに書けばスタイルを上書きすることができる．</p>
+
+<p>iPhone用にこんな感じにしてみた．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-device-width</span><span class="o">:</span> <span class="nt">480px</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">.85em</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こんな感じになった．</p>
+
+<p>BEFORE <--> AFTER</p>
+
+<p><a href="http://www.flickr.com/photos/22927952@N03/8267422765/" title="Untitled by yaeda, on Flickr"><img src="http://farm9.staticflickr.com/8349/8267422765_a6927e6feb.jpg" width="333" height="500" alt="Untitled"></a>
+<a href="http://www.flickr.com/photos/22927952@N03/8268493392/" title="Untitled by yaeda, on Flickr"><img src="http://farm9.staticflickr.com/8216/8268493392_4184af3096.jpg" width="333" height="500" alt="Untitled"></a></p>
+
+<p>とはいうものの (この画像のレイアウトもそうだけど）デフォルトテーマはちょっと微妙ですね．次はThemeでも変えてみるかな．</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -184,6 +240,10 @@ echo 'tech. &hellip;">
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/13/customize-octopress-layout/">Customize Octopress Layout</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/12/custom-domain-with-github-pages/">Custom Domain with Github Pages</a>

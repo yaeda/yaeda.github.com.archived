@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | TECH.KAZEOR.NET]]></title>
   <link href="http://tech.kazeor.net/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://tech.kazeor.net/"/>
-  <updated>2012-12-13T00:11:31+09:00</updated>
+  <updated>2012-12-13T21:52:58+09:00</updated>
   <id>http://tech.kazeor.net/</id>
   <author>
     <name><![CDATA[Takeshi YAEDA]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Customize Octopress Layout]]></title>
+    <link href="http://tech.kazeor.net/blog/2012/12/13/customize-octopress-layout/"/>
+    <updated>2012-12-13T00:14:00+09:00</updated>
+    <id>http://tech.kazeor.net/blog/2012/12/13/customize-octopress-layout</id>
+    <content type="html"><![CDATA[<p>タイトルが長く，iPhoneのブラウザで表示するとはみ出してしまうのが気になったので，レイアウトを修正してみた．</p>
+
+<p>OctopressのレイアウトはSassで書かれている．<code>sass/custom/_style.scss</code>が最後にimportされるので，ここに書けばスタイルを上書きすることができる．</p>
+
+<p>iPhone用にこんな感じにしてみた．</p>
+
+<p>``` css
+@media only screen and (max-device-width: 480px) {</p>
+
+<pre><code>body &gt; header { font-size: .85em; }
+</code></pre>
+
+<p>}</p>
+
+<p>```</p>
+
+<p>こんな感じになった．</p>
+
+<p>BEFORE <--> AFTER</p>
+
+<p><a href="http://www.flickr.com/photos/22927952@N03/8267422765/" title="Untitled by yaeda, on Flickr"><img src="http://farm9.staticflickr.com/8349/8267422765_a6927e6feb.jpg" width="333" height="500" alt="Untitled"></a>
+<a href="http://www.flickr.com/photos/22927952@N03/8268493392/" title="Untitled by yaeda, on Flickr"><img src="http://farm9.staticflickr.com/8216/8268493392_4184af3096.jpg" width="333" height="500" alt="Untitled"></a></p>
+
+<p>とはいうものの (この画像のレイアウトもそうだけど）デフォルトテーマはちょっと微妙ですね．次はThemeでも変えてみるかな．</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Custom Domain with Github Pages]]></title>
