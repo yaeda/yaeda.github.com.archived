@@ -9,7 +9,7 @@
   <meta name="author" content="Takeshi YAEDA">
 
   
-  <meta name="description" content="タイトルが長く，iPhoneのブラウザで表示するとはみ出してしまうのが気になったので，レイアウトを修正してみた． OctopressのレイアウトはSassで書かれている．sass/custom/_style.scssが最後にimportされるので，ここに書けばスタイルを上書きすることができる． &hellip;">
+  <meta name="description" content="Git protocol(git://) is the fastest way to access to a git repository. However, firewall sometime prevent this protocol. Recently we can use ssh &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,6 +74,79 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/22/git-protocol-access-over-http-proxy/">Git Protocol Access Over Http Proxy</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-22T15:43:00+09:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Git protocol(git://) is the fastest way to access to a git repository. However, firewall sometime prevent this protocol.</p>
+
+<p>Recently we can use ssh protocol instead of git protocol to the Github repositories. However many other git repositories don&#8217;t have such alternatives.</p>
+
+<p>In that case, &#8216;corkscrew&#8217; enable you to use git protocol over http proxy.</p>
+
+<p>Install corkscrew.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get install corkscrew
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Create a script called &#8216;git-proxy.sh&#8217;.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
+</span><span class='line'>corkscrew &lt;proxy host&gt; &lt;proxy port&gt; <span class="nv">$1</span> <span class="nv">$2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Setup environment variable called GIT_PROXY_COMMAND.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>chmod 755 /path/to/git-proxy.sh
+</span><span class='line'><span class="nb">export </span><span class="nv">GIT_PROXY_COMMAND</span><span class="o">=</span>/path/to/git-proxy.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Another approach is using &#8216;socat&#8217;. I havn&#8217;t yet tried that so refer to the following links, please.</p>
+
+<ul>
+<li><a href="http://sitaramc.github.com/tips/git-over-proxy.html">How to use git over an HTTP proxy, with socat</a></li>
+<li><a href="http://www.emilsit.net/blog/archives/how-to-use-the-git-protocol-through-a-http-connect-proxy/">How to use the git protocol through a HTTP CONNECT proxy - Thoughts on Systems</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -240,6 +313,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/22/git-protocol-access-over-http-proxy/">Git Protocol Access over Http Proxy</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/13/customize-octopress-layout/">Customize Octopress Layout</a>
