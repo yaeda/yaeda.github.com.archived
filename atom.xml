@@ -4,7 +4,7 @@
   <title><![CDATA[TECH.KAZEOR.NET]]></title>
   <link href="http://tech.kazeor.net/atom.xml" rel="self"/>
   <link href="http://tech.kazeor.net/"/>
-  <updated>2012-12-22T15:45:11+09:00</updated>
+  <updated>2013-01-06T16:09:19+09:00</updated>
   <id>http://tech.kazeor.net/</id>
   <author>
     <name><![CDATA[Takeshi YAEDA]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[I started leaning Ruby and Rails]]></title>
+    <link href="http://tech.kazeor.net/blog/2013/01/06/i-started-leaning-ruby-and-rails/"/>
+    <updated>2013-01-06T15:35:00+09:00</updated>
+    <id>http://tech.kazeor.net/blog/2013/01/06/i-started-leaning-ruby-and-rails</id>
+    <content type="html"><![CDATA[<p>ふとウェブサービスのアイデアが浮かんだので実装を考えていたら，Ruby on Railsで実装すると楽そうだということに気付き，RubyとRailsの勉強を始めました．</p>
+
+<p>とりあえず，<a href="http://dotinstall.com/">ドットインストール</a>でRubyとRuby on Railsのレッスンを完了してみた．感じたことをつらつら</p>
+
+<ul>
+<li>Ruby
+
+<ul>
+<li><code>=begin</code>と<code>=end</code>によるコメントやRational型が新鮮</li>
+<li>大文字宣言したらCONST定数になるの素敵</li>
+<li><code>elseif</code>でも<code>elif</code>でもなく<code>elsif</code>なのが間違えそう</li>
+<li>end書くの面倒</li>
+<li><code>i += 1</code>は使えるが<code>i++</code>は使えない</li>
+</ul>
+</li>
+</ul>
+
+
+<br/>
+
+
+<ul>
+<li>Ruby on Rails
+
+<ul>
+<li>PythonでもFlaskしか使ったことないので，それに比べると機能盛り盛り</li>
+<li>便利な半面，ちゃんと中まで調べないと気持ち悪いし応用きかない</li>
+<li>DBからクライアント側のjsまでいろいろと面倒をみているフレームワーク</li>
+<li>いろいろとルールがあるので，複数人で大きなサービス作るような時は便利だと思う．</li>
+</ul>
+</li>
+</ul>
+
+
+<br/>
+
+
+<ul>
+<li>ドットインストール
+
+<ul>
+<li>3分動画は見やすくてとても良い</li>
+<li>Rubyのレッスンにシンボルの説明が無いので，Ruby on Railsのレッスン始めるといきなり面食らう．Ruby中級みたいなレッスンが必要．</li>
+</ul>
+</li>
+</ul>
+
+
+<p>いろいろ疑問点を調べながら，二日くらいかけて両レッスン終了．終了する頃には当初の目的であるウェブサービスの実装意欲は無くなっていましたとさ．</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Git Protocol Access over Http Proxy]]></title>
