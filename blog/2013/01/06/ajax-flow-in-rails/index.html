@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Git Protocol Access over Http Proxy - TECH.KAZEOR.NET</title>
+  <title>Ajax flow in Rails - TECH.KAZEOR.NET</title>
   <meta name="author" content="Takeshi YAEDA">
 
   
-  <meta name="description" content="Git protocol(git://) is the fastest way to access to a git repository. However, firewall sometime prevent this protocol. Recently we can use ssh &hellip;">
+  <meta name="description" content="ドットインストールのチュートリアルでブログシステムを作っているときに，ブログポストの削除リンクを以下のコードで実装した． 1
+&lt;%= link_to &#39;Delete&#39;, post, :confirm =&gt; &#39;Sure?&#39;, :method =&gt; : &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tech.kazeor.net/blog/2012/12/22/git-protocol-access-over-http-proxy/">
+  <link rel="canonical" href="http://tech.kazeor.net/blog/2013/01/06/ajax-flow-in-rails/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -77,7 +78,7 @@
   
   <header>
     
-      <h1 class="entry-title">Git Protocol Access Over Http Proxy</h1>
+      <h1 class="entry-title">Ajax Flow in Rails</h1>
     
     
       <p class="meta">
@@ -93,51 +94,47 @@
   
 
 
-<time datetime="2012-12-22T15:43:00+09:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2012</time>
+<time datetime="2013-01-06T22:57:00+09:00" pubdate data-updated="true">Jan 6<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Git protocol(git://) is the fastest way to access to a git repository. However, firewall sometime prevent this protocol.</p>
-
-<p>Recently we can use ssh protocol instead of git protocol to the Github repositories. However many other git repositories don&#8217;t have such alternatives.</p>
-
-<p>In that case, &#8216;corkscrew&#8217; enable you to use git protocol over http proxy.</p>
-
-<p>Install corkscrew.</p>
+<div class="entry-content"><p>ドットインストールのチュートリアルでブログシステムを作っているときに，ブログポストの削除リンクを以下のコードで実装した．</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get install corkscrew
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;Delete&#39;, post, :confirm =</span><span class="o">&gt;</span> <span class="s1">&#39;Sure?&#39;</span><span class="p">,</span> <span class="ss">:method</span> <span class="o">=&gt;</span> <span class="ss">:delete</span><span class="p">,</span> <span class="ss">:remote</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="o">%&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Create a script called &#8216;git-proxy.sh&#8217;.</p>
+<p><code>:confirm</code>は確認用ダイアログのテキスト，<code>:method</code>はアクセスするHTTPメソッド，<code>:remote</code>はajaxアクセスするかしないか，の設定．</p>
+
+<p>これは次のように展開される．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/posts/1&quot;</span> <span class="na">data-confirm=</span><span class="s">&quot;Sure?&quot;</span> <span class="na">data-method=</span><span class="s">&quot;delete&quot;</span> <span class="na">rel=</span><span class="s">&quot;nofollow&quot;</span><span class="nt">&gt;</span>Delete<span class="nt">&lt;/a&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これだけではクリックしたら/post/1にHTTP DELETEでアクセスするようにはならない．疑問が残ったので調べてみると，jquery_ujs.jsというスクリプトで色々やっていた．</p>
+
+<p>jquery_ujs.jsはGemfileでjquery-railsを設定していると直接読み込まれるようで，railsアプリケーションのディレクトリに見つけることは出来ない．私の環境だと<code>~/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/jquery-rails-2.1.4/vendor/assets/javascripts/jquery_ujs.js</code>にあったが，Githubのレポジトリ(<a href="https://github.com/rails/jquery-ujs%20rails/jquery-ujs%20·%20GitHub">rails/jquery-ujs · GitHub</a>)かDeveloper Toolsなどで直接中身をみるのが早い．何故か圧縮されていないので簡単にコードを追うことができる．(因みにjquery本体も圧縮されていない）</p>
+
+<p><code>data-method</code>についてはjquery_ujs.jsの185行目のhandleMethod以下で，<code>data-method</code>に合わせてformを作ってsubmitしているのが分かる．</p>
+
+<p>ちなみに，jquery_ujs.jsの149行目からのoptionの設定で，ajaxが成功したときにajax:successがtriggerされることが分かる．ここまできてようやく以下のようにして結果を取得できることが分かる．(ここでは削除に成功した項目をfadeOutで消している)</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
-</span><span class='line'>corkscrew &lt;proxy host&gt; &lt;proxy port&gt; <span class="nv">$1</span> <span class="nv">$2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[data-method=&quot;delete&quot;]&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;ajax:success&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#post_&#39;</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">(</span><span class="s2">&quot;slow&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Setup environment variable called GIT_PROXY_COMMAND.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>chmod 755 /path/to/git-proxy.sh
-</span><span class='line'><span class="nb">export </span><span class="nv">GIT_PROXY_COMMAND</span><span class="o">=</span>/path/to/git-proxy.sh
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Another approach is using &#8216;socat&#8217;. I havn&#8217;t yet tried that so refer to the following links, please.</p>
-
-<ul>
-<li><a href="http://sitaramc.github.com/tips/git-over-proxy.html">How to use git over an HTTP proxy, with socat</a></li>
-<li><a href="http://www.emilsit.net/blog/archives/how-to-use-the-git-protocol-through-a-http-connect-proxy/">How to use the git protocol through a HTTP CONNECT proxy - Thoughts on Systems</a></li>
-</ul>
-
+<p>古いバージョンはちょっと話が違うようだが，Rails 3.2ではjqueryが標準で利用できるようになっていて，jquery_ujsというライブラリでajax周りの実装が簡単に行うことができるようになっているのが分かった．Web Frameworkってすげー．</p>
 </div>
 
 
@@ -160,12 +157,12 @@
   
 
 
-<time datetime="2012-12-22T15:43:00+09:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2012</time>
+<time datetime="2013-01-06T22:57:00+09:00" pubdate data-updated="true">Jan 6<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/corkscrew/'>corkscrew</a>, <a class='category' href='/blog/categories/git/'>git</a>
+    <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
   
 </span>
 
@@ -174,7 +171,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tech.kazeor.net/blog/2012/12/22/git-protocol-access-over-http-proxy/" data-via="yaeda" data-counturl="http://tech.kazeor.net/blog/2012/12/22/git-protocol-access-over-http-proxy/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tech.kazeor.net/blog/2013/01/06/ajax-flow-in-rails/" data-via="yaeda" data-counturl="http://tech.kazeor.net/blog/2013/01/06/ajax-flow-in-rails/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -187,10 +184,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/12/13/customize-octopress-layout/" title="Previous Post: Customize Octopress Layout">&laquo; Customize Octopress Layout</a>
+        <a class="basic-alignment left" href="/blog/2013/01/06/i-started-learning-ruby-and-rails/" title="Previous Post: I started learning Ruby and Rails">&laquo; I started learning Ruby and Rails</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/01/06/i-started-learning-ruby-and-rails/" title="Next Post: I started learning Ruby and Rails">I started learning Ruby and Rails &raquo;</a>
       
     </p>
   </footer>
@@ -273,8 +268,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://tech.kazeor.net/blog/2012/12/22/git-protocol-access-over-http-proxy/';
-        var disqus_url = 'http://tech.kazeor.net/blog/2012/12/22/git-protocol-access-over-http-proxy/';
+        var disqus_identifier = 'http://tech.kazeor.net/blog/2013/01/06/ajax-flow-in-rails/';
+        var disqus_url = 'http://tech.kazeor.net/blog/2013/01/06/ajax-flow-in-rails/';
         var disqus_script = 'embed.js';
       
     (function () {

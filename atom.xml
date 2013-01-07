@@ -4,7 +4,7 @@
   <title><![CDATA[TECH.KAZEOR.NET]]></title>
   <link href="http://tech.kazeor.net/atom.xml" rel="self"/>
   <link href="http://tech.kazeor.net/"/>
-  <updated>2013-01-06T16:09:19+09:00</updated>
+  <updated>2013-01-08T00:01:26+09:00</updated>
   <id>http://tech.kazeor.net/</id>
   <author>
     <name><![CDATA[Takeshi YAEDA]]></name>
@@ -14,10 +14,52 @@
 
   
   <entry>
-    <title type="html"><![CDATA[I started leaning Ruby and Rails]]></title>
-    <link href="http://tech.kazeor.net/blog/2013/01/06/i-started-leaning-ruby-and-rails/"/>
+    <title type="html"><![CDATA[Ajax flow in Rails]]></title>
+    <link href="http://tech.kazeor.net/blog/2013/01/06/ajax-flow-in-rails/"/>
+    <updated>2013-01-06T22:57:00+09:00</updated>
+    <id>http://tech.kazeor.net/blog/2013/01/06/ajax-flow-in-rails</id>
+    <content type="html"><![CDATA[<p>ドットインストールのチュートリアルでブログシステムを作っているときに，ブログポストの削除リンクを以下のコードで実装した．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;Delete&#39;, post, :confirm =</span><span class="o">&gt;</span> <span class="s1">&#39;Sure?&#39;</span><span class="p">,</span> <span class="ss">:method</span> <span class="o">=&gt;</span> <span class="ss">:delete</span><span class="p">,</span> <span class="ss">:remote</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>:confirm</code>は確認用ダイアログのテキスト，<code>:method</code>はアクセスするHTTPメソッド，<code>:remote</code>はajaxアクセスするかしないか，の設定．</p>
+
+<p>これは次のように展開される．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/posts/1&quot;</span> <span class="na">data-confirm=</span><span class="s">&quot;Sure?&quot;</span> <span class="na">data-method=</span><span class="s">&quot;delete&quot;</span> <span class="na">rel=</span><span class="s">&quot;nofollow&quot;</span><span class="nt">&gt;</span>Delete<span class="nt">&lt;/a&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これだけではクリックしたら/post/1にHTTP DELETEでアクセスするようにはならない．疑問が残ったので調べてみると，jquery_ujs.jsというスクリプトで色々やっていた．</p>
+
+<p>jquery_ujs.jsはGemfileでjquery-railsを設定していると直接読み込まれるようで，railsアプリケーションのディレクトリに見つけることは出来ない．私の環境だと<code>~/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/jquery-rails-2.1.4/vendor/assets/javascripts/jquery_ujs.js</code>にあったが，Githubのレポジトリ(<a href="https://github.com/rails/jquery-ujs%20rails/jquery-ujs%20·%20GitHub">rails/jquery-ujs · GitHub</a>)かDeveloper Toolsなどで直接中身をみるのが早い．何故か圧縮されていないので簡単にコードを追うことができる．(因みにjquery本体も圧縮されていない）</p>
+
+<p><code>data-method</code>についてはjquery_ujs.jsの185行目のhandleMethod以下で，<code>data-method</code>に合わせてformを作ってsubmitしているのが分かる．</p>
+
+<p>ちなみに，jquery_ujs.jsの149行目からのoptionの設定で，ajaxが成功したときにajax:successがtriggerされることが分かる．ここまできてようやく以下のようにして結果を取得できることが分かる．(ここでは削除に成功した項目をfadeOutで消している)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[data-method=&quot;delete&quot;]&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;ajax:success&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">xhr</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#post_&#39;</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">(</span><span class="s2">&quot;slow&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>古いバージョンはちょっと話が違うようだが，Rails 3.2ではjqueryが標準で利用できるようになっていて，jquery_ujsというライブラリでajax周りの実装が簡単に行うことができるようになっているのが分かった．Web Frameworkってすげー．</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[I started learning Ruby and Rails]]></title>
+    <link href="http://tech.kazeor.net/blog/2013/01/06/i-started-learning-ruby-and-rails/"/>
     <updated>2013-01-06T15:35:00+09:00</updated>
-    <id>http://tech.kazeor.net/blog/2013/01/06/i-started-leaning-ruby-and-rails</id>
+    <id>http://tech.kazeor.net/blog/2013/01/06/i-started-learning-ruby-and-rails</id>
     <content type="html"><![CDATA[<p>ふとウェブサービスのアイデアが浮かんだので実装を考えていたら，Ruby on Railsで実装すると楽そうだということに気付き，RubyとRailsの勉強を始めました．</p>
 
 <p>とりあえず，<a href="http://dotinstall.com/">ドットインストール</a>でRubyとRuby on Railsのレッスンを完了してみた．感じたことをつらつら</p>
