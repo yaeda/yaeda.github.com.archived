@@ -4,7 +4,7 @@
   <title><![CDATA[TECH.KAZEOR.NET]]></title>
   <link href="http://tech.kazeor.net/atom.xml" rel="self"/>
   <link href="http://tech.kazeor.net/"/>
-  <updated>2013-01-25T01:09:39+09:00</updated>
+  <updated>2013-01-25T01:21:49+09:00</updated>
   <id>http://tech.kazeor.net/</id>
   <author>
     <name><![CDATA[Takeshi YAEDA]]></name>
@@ -20,7 +20,7 @@
     <id>http://tech.kazeor.net/blog/2013/01/25/improved-gitlab-public-mode</id>
     <content type="html"><![CDATA[<p>先日GitLabの4.1がReleaseされ，ついにPublic Modeが導入されました．LDAPや同じく4.1から追加されたSign-up Pageを合わせて使えば，GitHubっぽいものをInternalに作れるようになりました．</p>
 
-<p>と思って4.1にアップグレードしたのですが，Public Modeと行っても，\publicにアクセスすると，レポジトリのタイトルとclone用のurlがリスト表示されるだけで，ソースコードやコミットログを見ることはできませんでした．</p>
+<p>と思って4.1にアップグレードしたのですが，Public Modeと言っても，レポジトリのタイトルとclone用のurlがリスト表示されるだけでした．ソースコードやコミットログを見ることはできません．</p>
 
 <p>そこで，最近Railsを勉強し始めたので，腕試しに以下の機能拡張をしてみました．</p>
 
