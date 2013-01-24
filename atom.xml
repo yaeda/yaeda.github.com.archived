@@ -4,7 +4,7 @@
   <title><![CDATA[TECH.KAZEOR.NET]]></title>
   <link href="http://tech.kazeor.net/atom.xml" rel="self"/>
   <link href="http://tech.kazeor.net/"/>
-  <updated>2013-01-25T01:21:49+09:00</updated>
+  <updated>2013-01-25T01:24:54+09:00</updated>
   <id>http://tech.kazeor.net/</id>
   <author>
     <name><![CDATA[Takeshi YAEDA]]></name>
@@ -36,7 +36,7 @@
 
 <p>ソースコードは以下にあります．</p>
 
-<p><a href="https://github.com/yaeda/gitlabhq/tree/improve-public-mode%20yaeda/gitlabhq%20at%20improve-public-mode%20·%20GitHub">yaeda/gitlabhq at improve-public-mode · GitHub</a></p>
+<p><a href="https://github.com/yaeda/gitlabhq/tree/improve-public-mode">yaeda/gitlabhq at improve-public-mode · GitHub</a></p>
 
 <p>GitLabのコードは規模が大きいですが，かなり読みやすいです．綺麗なコードだったので，修正も少なくすみました．なかなか参考になります．</p>
 
