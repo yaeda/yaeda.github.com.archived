@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: git | TECH.KAZEOR.NET]]></title>
-  <link href="http://tech.kazeor.net/blog/categories/git/atom.xml" rel="self"/>
+  <title><![CDATA[Category: gitlab | TECH.KAZEOR.NET]]></title>
+  <link href="http://tech.kazeor.net/blog/categories/gitlab/atom.xml" rel="self"/>
   <link href="http://tech.kazeor.net/"/>
   <updated>2013-01-25T01:09:39+09:00</updated>
   <id>http://tech.kazeor.net/</id>
@@ -43,46 +43,6 @@
 <p>自分で手を入れ始めると可愛くなりますね．LET'S HAPPY GITLAB LIFE!</p>
 
 <p><a href="http://blog.gitlab.org/gitlab-4-1-released/%20GitLab%204.1%20-%20GITLAB%20Blog">GitLab 4.1 - GITLAB Blog</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Git Protocol Access over Http Proxy]]></title>
-    <link href="http://tech.kazeor.net/blog/2012/12/22/git-protocol-access-over-http-proxy/"/>
-    <updated>2012-12-22T15:43:00+09:00</updated>
-    <id>http://tech.kazeor.net/blog/2012/12/22/git-protocol-access-over-http-proxy</id>
-    <content type="html"><![CDATA[<p>Git protocol(git://) is the fastest way to access to a git repository. However, firewall sometime prevent this protocol.</p>
-
-<p>Recently we can use ssh protocol instead of git protocol to the Github repositories. However many other git repositories don't have such alternatives.</p>
-
-<p>In that case, 'corkscrew' enable you to use git protocol over http proxy.</p>
-
-<p>Install corkscrew.
-<code>sh
-sudo apt-get install corkscrew
-</code></p>
-
-<p>Create a script called 'git-proxy.sh'.
-```sh</p>
-
-<h1>!/bin/sh</h1>
-
-<p>corkscrew <proxy host> <proxy port> $1 $2
-```</p>
-
-<p>Setup environment variable called GIT_PROXY_COMMAND.
-<code>sh
-chmod 755 /path/to/git-proxy.sh
-export GIT_PROXY_COMMAND=/path/to/git-proxy.sh
-</code></p>
-
-<p>Another approach is using 'socat'. I havn't yet tried that so refer to the following links, please.</p>
-
-<ul>
-<li><a href="http://sitaramc.github.com/tips/git-over-proxy.html">How to use git over an HTTP proxy, with socat</a></li>
-<li><a href="http://www.emilsit.net/blog/archives/how-to-use-the-git-protocol-through-a-http-connect-proxy/">How to use the git protocol through a HTTP CONNECT proxy - Thoughts on Systems</a></li>
-</ul>
-
 ]]></content>
   </entry>
   
