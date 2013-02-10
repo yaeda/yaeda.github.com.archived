@@ -29,11 +29,17 @@
         <lastmod>2013-01-25T01:24:54+09:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/
+        </loc>
+        <lastmod>2013-02-10T22:27:42+09:00</lastmod>
+    </url>
+    <url>
         <loc>http://tech.kazeor.net/blog/archives/</loc>
-        <lastmod>2013-01-25T01:24:54+09:00</lastmod>
+        <lastmod>2013-02-10T22:27:42+09:00</lastmod>
     </url>
     <url>
         <loc>http://tech.kazeor.net/</loc>
-        <lastmod>2013-01-25T01:24:54+09:00</lastmod>
+        <lastmod>2013-02-10T22:27:42+09:00</lastmod>
     </url>
 </urlset>

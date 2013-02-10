@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | TECH.KAZEOR.NET]]></title>
   <link href="http://tech.kazeor.net/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://tech.kazeor.net/"/>
-  <updated>2013-01-25T01:24:54+09:00</updated>
+  <updated>2013-02-10T22:27:43+09:00</updated>
   <id>http://tech.kazeor.net/</id>
   <author>
     <name><![CDATA[Takeshi YAEDA]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to organize repositories cloned from GitHub]]></title>
+    <link href="http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/"/>
+    <updated>2013-02-10T22:01:00+09:00</updated>
+    <id>http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github</id>
+    <content type="html"><![CDATA[<p>GitHubで見つけたレポジトリはいつも<code>~/dev/github</code>にcloneしているのですが，最近雑然として扱いにくっくなっていました．</p>
+
+<p>ユーザー毎に<code>~/dev/github/&lt;username&gt;/&lt;repo&gt;</code>と分けてみたり，よくアクセスするものは<code>~/dev/github/&lt;repo&gt;</code>と直下に置いてみたりしていて，かなり見づらくなっていました．特にユーザー名とレポジトリ名がごっちゃで見づらい．</p>
+
+<p>そんなことに悩んでいるときに，丁度良いツールを見つけました．</p>
+
+<p><a href="http://subtech.g.hatena.ne.jp/motemen/20130207/1360210479">GitHub のリポジトリを管理する小さいツール ghq - NaN days - subtech</a></p>
+
+<p>基本はユーザー毎に<code>~/dev/github/@&lt;username&gt;/&lt;repo&gt;</code>にcloneして，直下にはシンボリックリンクを作成．ユーザ名に@が付いているので見やすい．これはいい！</p>
+
+<p><em>以下蛇足</em></p>
+
+<p>どうせなら<a href="https://github.com/defunkt/hub">hubコマンド</a>みたいに</p>
+
+<p><code>sh
+ghq [-clone] yaeda/ghq
+</code></p>
+
+<p>という感じでcloneできれば楽だなと思い，試しに実装してみたのですが</p>
+
+<p><code>sh
+ghq [-cd] @yaeda/ghq
+</code></p>
+
+<p>と混乱しそうで微妙です．やめたほうがいいかも．</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Improved GitLab Public mode]]></title>

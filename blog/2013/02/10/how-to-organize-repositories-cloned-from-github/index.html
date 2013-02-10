@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Customize Octopress Layout - TECH.KAZEOR.NET</title>
+  <title>How to organize repositories cloned from GitHub - TECH.KAZEOR.NET</title>
   <meta name="author" content="Takeshi YAEDA">
 
   
-  <meta name="description" content="タイトルが長く，iPhoneのブラウザで表示するとはみ出してしまうのが気になったので，レイアウトを修正してみた． OctopressのレイアウトはSassで書かれている．sass/custom/_style.scssが最後にimportされるので，ここに書けばスタイルを上書きすることができる． &hellip;">
+  <meta name="description" content="GitHubで見つけたレポジトリはいつも~/dev/githubにcloneしているのですが，最近雑然として扱いにくっくなっていました． ユーザー毎に~/dev/github/&lt;username&gt;/&lt;repo&gt;と分けてみたり，よくアクセスするものは~/dev/github &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tech.kazeor.net/blog/2012/12/13/customize-octopress-layout/">
+  <link rel="canonical" href="http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -77,7 +77,7 @@
   
   <header>
     
-      <h1 class="entry-title">Customize Octopress Layout</h1>
+      <h1 class="entry-title">How to Organize Repositories Cloned From GitHub</h1>
     
     
       <p class="meta">
@@ -93,36 +93,40 @@
   
 
 
-<time datetime="2012-12-13T00:14:00+09:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
+<time datetime="2013-02-10T22:01:00+09:00" pubdate data-updated="true">Feb 10<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>タイトルが長く，iPhoneのブラウザで表示するとはみ出してしまうのが気になったので，レイアウトを修正してみた．</p>
+<div class="entry-content"><p>GitHubで見つけたレポジトリはいつも<code>~/dev/github</code>にcloneしているのですが，最近雑然として扱いにくっくなっていました．</p>
 
-<p>OctopressのレイアウトはSassで書かれている．<code>sass/custom/_style.scss</code>が最後にimportされるので，ここに書けばスタイルを上書きすることができる．</p>
+<p>ユーザー毎に<code>~/dev/github/&lt;username&gt;/&lt;repo&gt;</code>と分けてみたり，よくアクセスするものは<code>~/dev/github/&lt;repo&gt;</code>と直下に置いてみたりしていて，かなり見づらくなっていました．特にユーザー名とレポジトリ名がごっちゃで見づらい．</p>
 
-<p>iPhone用にこんな感じにしてみた．</p>
+<p>そんなことに悩んでいるときに，丁度良いツールを見つけました．</p>
+
+<p><a href="http://subtech.g.hatena.ne.jp/motemen/20130207/1360210479">GitHub のリポジトリを管理する小さいツール ghq - NaN days - subtech</a></p>
+
+<p>基本はユーザー毎に<code>~/dev/github/@&lt;username&gt;/&lt;repo&gt;</code>にcloneして，直下にはシンボリックリンクを作成．ユーザ名に@が付いているので見やすい．これはいい！</p>
+
+<p><em>以下蛇足</em></p>
+
+<p>どうせなら<a href="https://github.com/defunkt/hub">hubコマンド</a>みたいに</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-device-width</span><span class="o">:</span> <span class="nt">480px</span><span class="o">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">.85em</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ghq <span class="o">[</span>-clone<span class="o">]</span> yaeda/ghq
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>こんな感じになった．</p>
+<p>という感じでcloneできれば楽だなと思い，試しに実装してみたのですが</p>
 
-<p>BEFORE <--> AFTER</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ghq <span class="o">[</span>-cd<span class="o">]</span> @yaeda/ghq
+</span></code></pre></td></tr></table></div></figure>
 
-<p><a href="http://www.flickr.com/photos/22927952@N03/8267422765/" title="Untitled by yaeda, on Flickr"><img src="http://farm9.staticflickr.com/8349/8267422765_a6927e6feb.jpg" width="333" height="500" alt="Untitled"></a>
-<a href="http://www.flickr.com/photos/22927952@N03/8268493392/" title="Untitled by yaeda, on Flickr"><img src="http://farm9.staticflickr.com/8216/8268493392_4184af3096.jpg" width="333" height="500" alt="Untitled"></a></p>
 
-<p>とはいうものの (この画像のレイアウトもそうだけど）デフォルトテーマはちょっと微妙ですね．次はThemeでも変えてみるかな．</p>
+<p>と混乱しそうで微妙です．やめたほうがいいかも．</p>
 </div>
 
 
@@ -145,12 +149,12 @@
   
 
 
-<time datetime="2012-12-13T00:14:00+09:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
+<time datetime="2013-02-10T22:01:00+09:00" pubdate data-updated="true">Feb 10<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+    <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/github/'>github</a>
   
 </span>
 
@@ -159,7 +163,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tech.kazeor.net/blog/2012/12/13/customize-octopress-layout/" data-via="yaeda" data-counturl="http://tech.kazeor.net/blog/2012/12/13/customize-octopress-layout/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/" data-via="yaeda" data-counturl="http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -172,10 +176,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/12/12/custom-domain-with-github-pages/" title="Previous Post: Custom Domain with Github Pages">&laquo; Custom Domain with Github Pages</a>
+        <a class="basic-alignment left" href="/blog/2013/01/25/improved-gitlab-public-mode/" title="Previous Post: Improved GitLab Public mode">&laquo; Improved GitLab Public mode</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/12/22/git-protocol-access-over-http-proxy/" title="Next Post: Git Protocol Access over Http Proxy">Git Protocol Access over Http Proxy &raquo;</a>
       
     </p>
   </footer>
@@ -258,8 +260,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://tech.kazeor.net/blog/2012/12/13/customize-octopress-layout/';
-        var disqus_url = 'http://tech.kazeor.net/blog/2012/12/13/customize-octopress-layout/';
+        var disqus_identifier = 'http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/';
+        var disqus_url = 'http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -4,7 +4,7 @@
   <title><![CDATA[TECH.KAZEOR.NET]]></title>
   <link href="http://tech.kazeor.net/atom.xml" rel="self"/>
   <link href="http://tech.kazeor.net/"/>
-  <updated>2013-01-25T01:24:54+09:00</updated>
+  <updated>2013-02-10T22:27:43+09:00</updated>
   <id>http://tech.kazeor.net/</id>
   <author>
     <name><![CDATA[Takeshi YAEDA]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to organize repositories cloned from GitHub]]></title>
+    <link href="http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/"/>
+    <updated>2013-02-10T22:01:00+09:00</updated>
+    <id>http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github</id>
+    <content type="html"><![CDATA[<p>GitHubで見つけたレポジトリはいつも<code>~/dev/github</code>にcloneしているのですが，最近雑然として扱いにくっくなっていました．</p>
+
+<p>ユーザー毎に<code>~/dev/github/&lt;username&gt;/&lt;repo&gt;</code>と分けてみたり，よくアクセスするものは<code>~/dev/github/&lt;repo&gt;</code>と直下に置いてみたりしていて，かなり見づらくなっていました．特にユーザー名とレポジトリ名がごっちゃで見づらい．</p>
+
+<p>そんなことに悩んでいるときに，丁度良いツールを見つけました．</p>
+
+<p><a href="http://subtech.g.hatena.ne.jp/motemen/20130207/1360210479">GitHub のリポジトリを管理する小さいツール ghq - NaN days - subtech</a></p>
+
+<p>基本はユーザー毎に<code>~/dev/github/@&lt;username&gt;/&lt;repo&gt;</code>にcloneして，直下にはシンボリックリンクを作成．ユーザ名に@が付いているので見やすい．これはいい！</p>
+
+<p><em>以下蛇足</em></p>
+
+<p>どうせなら<a href="https://github.com/defunkt/hub">hubコマンド</a>みたいに</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ghq <span class="o">[</span>-clone<span class="o">]</span> yaeda/ghq
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>という感じでcloneできれば楽だなと思い，試しに実装してみたのですが</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ghq <span class="o">[</span>-cd<span class="o">]</span> @yaeda/ghq
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>と混乱しそうで微妙です．やめたほうがいいかも．</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Improved GitLab Public mode]]></title>
