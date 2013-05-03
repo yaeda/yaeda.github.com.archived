@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>How to organize repositories cloned from GitHub - TECH.KAZEOR.NET</title>
+  <title>Better Full Screen Mode on Cocoa Emacs 24.3 - TECH.KAZEOR.NET</title>
   <meta name="author" content="Takeshi YAEDA">
 
   
-  <meta name="description" content="GitHubで見つけたレポジトリはいつも~/dev/githubにcloneしているのですが，最近雑然として扱いにくっくなっていました． ユーザー毎に~/dev/github/&lt;username&gt;/&lt;repo&gt;と分けてみたり，よくアクセスするものは~/dev/github &hellip;">
+  <meta name="description" content="UbuntuのEmacsを24系に上げてelspの管理を全てELPA(package.el)に任せ始めたので，Macの方のEmacsも24系に上げることにした．現状の最新版24.3のインストール方法とOSX Lion Styleでないfullscreenの設定について． Emacs 24. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/">
+  <link rel="canonical" href="http://tech.kazeor.net/blog/2013/05/03/better-full-scrren-mode-on-cocoa-emacs-24-dot-3/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -77,7 +77,7 @@
   
   <header>
     
-      <h1 class="entry-title">How to Organize Repositories Cloned From GitHub</h1>
+      <h1 class="entry-title">Better Full Screen Mode on Cocoa Emacs 24.3</h1>
     
     
       <p class="meta">
@@ -93,40 +93,51 @@
   
 
 
-<time datetime="2013-02-10T22:01:00+09:00" pubdate data-updated="true">Feb 10<span>th</span>, 2013</time>
+<time datetime="2013-05-03T15:02:00+09:00" pubdate data-updated="true">May 3<span>rd</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>GitHubで見つけたレポジトリはいつも<code>~/dev/github</code>にcloneしているのですが，最近雑然として扱いにくっくなっていました．</p>
+<div class="entry-content"><p>UbuntuのEmacsを24系に上げてelspの管理を全てELPA(package.el)に任せ始めたので，Macの方のEmacsも24系に上げることにした．現状の最新版24.3のインストール方法とOSX Lion Styleでないfullscreenの設定について．</p>
 
-<p>ユーザー毎に<code>~/dev/github/&lt;username&gt;/&lt;repo&gt;</code>と分けてみたり，よくアクセスするものは<code>~/dev/github/&lt;repo&gt;</code>と直下に置いてみたりしていて，かなり見づらくなっていました．特にユーザー名とレポジトリ名がごっちゃで見づらい．</p>
+<h2>Emacs 24.3インストール</h2>
 
-<p>そんなことに悩んでいるときに，丁度良いツールを見つけました．</p>
+<p>軽く調べると，emacs-24.3.tar.xzを落としてきて，インラインパッチを当てて手動でビルドしている例が多い．パッチをあてる理由を理解していないため，今回は普通にbrewから入れる．問題に直面したら入れ直すことにする．</p>
 
-<p><a href="http://subtech.g.hatena.ne.jp/motemen/20130207/1360210479">GitHub のリポジトリを管理する小さいツール ghq - NaN days - subtech</a></p>
-
-<p>基本はユーザー毎に<code>~/dev/github/@&lt;username&gt;/&lt;repo&gt;</code>にcloneして，直下にはシンボリックリンクを作成．ユーザ名に@が付いているので見やすい．これはいい！</p>
-
-<p><em>以下蛇足</em></p>
-
-<p>どうせなら<a href="https://github.com/defunkt/hub">hubコマンド</a>みたいに</p>
+<p>brewによるインストールは以下のコマンドだが，本家のgitから落としてくるのでとても時間がかかる．お急ぎの場合はオプション外すのが良い(が，そっちでは下記のfullscreenの設定は試していない）</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ghq <span class="o">[</span>-clone<span class="o">]</span> yaeda/ghq
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install emacs --cocoa --HEAD --use-git-head
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>という感じでcloneできれば楽だなと思い，試しに実装してみたのですが</p>
+<p>以下のどちらかのコマンドで/Applicationsにインストールされる．</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ghq <span class="o">[</span>-cd<span class="o">]</span> @yaeda/ghq
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew linkapps
+</span><span class='line'>ln -s /usr/local/Cellar/emacs/HEAD/Emacs.app /Applications
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>と混乱しそうで微妙です．やめたほうがいいかも．</p>
+<h2>Full Screen Modeの設定</h2>
+
+<p>23系ではns-toggle-fullscreenがありtop barも消してフルスクリーン化してくれるので最高だった．
+24系ではns-toggle-fullscreenは無くなり，OSX Lion Styleのフルスクリーン(toggle-frame-fullscreen)が標準になってしまっている．
+toggle-frame-maximizedというのもあるが，top barは残ったままだし，maximizeが控えめで画面いっぱいに広がってくれない（全然maximizeじゃない！）．</p>
+
+<p>「改悪じゃねーか」と思っていたが，ns-use-native-fullscreenでtoggle-frame-fullscreenの挙動を変えられた．</p>
+
+<p>init.el辺りに以下を書いておくと，toggle-frame-fullscreenが23系のns-toggle-fullscreenと同じ挙動をしてくれて幸せEmacs生活が再始動する．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>setq ns-use-native-fullscreen nil<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>右上の矢印も消えてくれる．</p>
 </div>
 
 
@@ -149,12 +160,12 @@
   
 
 
-<time datetime="2013-02-10T22:01:00+09:00" pubdate data-updated="true">Feb 10<span>th</span>, 2013</time>
+<time datetime="2013-05-03T15:02:00+09:00" pubdate data-updated="true">May 3<span>rd</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/github/'>github</a>
+    <a class='category' href='/blog/categories/emacs/'>emacs</a>, <a class='category' href='/blog/categories/osx/'>osx</a>
   
 </span>
 
@@ -163,7 +174,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/" data-via="yaeda" data-counturl="http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tech.kazeor.net/blog/2013/05/03/better-full-scrren-mode-on-cocoa-emacs-24-dot-3/" data-via="yaeda" data-counturl="http://tech.kazeor.net/blog/2013/05/03/better-full-scrren-mode-on-cocoa-emacs-24-dot-3/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -176,10 +187,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/25/improved-gitlab-public-mode/" title="Previous Post: Improved GitLab Public mode">&laquo; Improved GitLab Public mode</a>
+        <a class="basic-alignment left" href="/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/" title="Previous Post: How to organize repositories cloned from GitHub">&laquo; How to organize repositories cloned from GitHub</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/05/03/better-full-scrren-mode-on-cocoa-emacs-24-dot-3/" title="Next Post: Better Full Screen Mode on Cocoa Emacs 24.3">Better Full Screen Mode on Cocoa Emacs 24.3 &raquo;</a>
       
     </p>
   </footer>
@@ -262,8 +271,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/';
-        var disqus_url = 'http://tech.kazeor.net/blog/2013/02/10/how-to-organize-repositories-cloned-from-github/';
+        var disqus_identifier = 'http://tech.kazeor.net/blog/2013/05/03/better-full-scrren-mode-on-cocoa-emacs-24-dot-3/';
+        var disqus_url = 'http://tech.kazeor.net/blog/2013/05/03/better-full-scrren-mode-on-cocoa-emacs-24-dot-3/';
         var disqus_script = 'embed.js';
       
     (function () {

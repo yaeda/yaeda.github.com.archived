@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: emacs | TECH.KAZEOR.NET]]></title>
+  <link href="http://tech.kazeor.net/blog/categories/emacs/atom.xml" rel="self"/>
+  <link href="http://tech.kazeor.net/"/>
+  <updated>2013-05-03T15:42:06+09:00</updated>
+  <id>http://tech.kazeor.net/</id>
+  <author>
+    <name><![CDATA[Takeshi YAEDA]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Better Full Screen Mode on Cocoa Emacs 24.3]]></title>
+    <link href="http://tech.kazeor.net/blog/2013/05/03/better-full-scrren-mode-on-cocoa-emacs-24-dot-3/"/>
+    <updated>2013-05-03T15:02:00+09:00</updated>
+    <id>http://tech.kazeor.net/blog/2013/05/03/better-full-scrren-mode-on-cocoa-emacs-24-dot-3</id>
+    <content type="html"><![CDATA[<p>UbuntuのEmacsを24系に上げてelspの管理を全てELPA(package.el)に任せ始めたので，Macの方のEmacsも24系に上げることにした．現状の最新版24.3のインストール方法とOSX Lion Styleでないfullscreenの設定について．</p>
+
+<h2>Emacs 24.3インストール</h2>
+
+<p>軽く調べると，emacs-24.3.tar.xzを落としてきて，インラインパッチを当てて手動でビルドしている例が多い．パッチをあてる理由を理解していないため，今回は普通にbrewから入れる．問題に直面したら入れ直すことにする．</p>
+
+<p>brewによるインストールは以下のコマンドだが，本家のgitから落としてくるのでとても時間がかかる．お急ぎの場合はオプション外すのが良い(が，そっちでは下記のfullscreenの設定は試していない）</p>
+
+<p><code>bash
+brew install emacs --cocoa --HEAD --use-git-head
+</code></p>
+
+<p>以下のどちらかのコマンドで/Applicationsにインストールされる．</p>
+
+<p><code>bash
+brew linkapps
+ln -s /usr/local/Cellar/emacs/HEAD/Emacs.app /Applications
+</code></p>
+
+<h2>Full Screen Modeの設定</h2>
+
+<p>23系ではns-toggle-fullscreenがありtop barも消してフルスクリーン化してくれるので最高だった．
+24系ではns-toggle-fullscreenは無くなり，OSX Lion Styleのフルスクリーン(toggle-frame-fullscreen)が標準になってしまっている．
+toggle-frame-maximizedというのもあるが，top barは残ったままだし，maximizeが控えめで画面いっぱいに広がってくれない（全然maximizeじゃない！）．</p>
+
+<p>「改悪じゃねーか」と思っていたが，ns-use-native-fullscreenでtoggle-frame-fullscreenの挙動を変えられた．</p>
+
+<p>init.el辺りに以下を書いておくと，toggle-frame-fullscreenが23系のns-toggle-fullscreenと同じ挙動をしてくれて幸せEmacs生活が再始動する．</p>
+
+<p><code>
+(setq ns-use-native-fullscreen nil)
+</code></p>
+
+<p>右上の矢印も消えてくれる．</p>
+]]></content>
+  </entry>
+  
+</feed>
